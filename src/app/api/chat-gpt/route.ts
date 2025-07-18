@@ -1,7 +1,30 @@
 import { NextResponse } from "next/server";
+import OpenAI from "openai";
 
 export async function POST(request: Request) {
-  return NextResponse.json({
-    name: "It Works!!!",
+  const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
   });
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+      {
+        role: "system",
+        content:
+          "you are very grumpy, please answer my questions with sarcasm grumpiness. Keep the answer to 3-4 sentence max and each sentence to at max 4-6 words.",
+      },
+      {
+        role: "user",
+        content: "Whats the best national park in the US to visit?",
+      },
+    ],
+    temperature: 0,
+    max_completion_tokens: 1024,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  });
+
+  return NextResponse.json(response);
 }
