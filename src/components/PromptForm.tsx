@@ -1,9 +1,11 @@
 import { useState } from "react";
 
 export default function PromptForm({
-  onSubmit,
+  onPromptSubmit,
+  isLoading,
 }: {
-  onSubmit: (prompt: string) => Promise<void> | void | string;
+  onPromptSubmit: (prompt: string) => Promise<void> | void | string;
+  isLoading: boolean;
 }) {
   const [prompt, setPrompt] = useState("");
 
@@ -15,7 +17,7 @@ export default function PromptForm({
           return;
         }
 
-        onSubmit(prompt);
+        onPromptSubmit(prompt);
         setPrompt("");
       }}
       className="flex flex-col gap-2 max-w-[50%]"
@@ -29,7 +31,11 @@ export default function PromptForm({
         }}
         className="border-1 max-w-[100%] p-[1rem] block"
       />
-      <input type="submit" className="border-1 p-2 max-w-25" />
+      <input
+        type="submit"
+        className="border-1 p-2 max-w-25"
+        disabled={isLoading}
+      />
     </form>
   );
 }
