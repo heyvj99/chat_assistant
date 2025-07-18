@@ -6,6 +6,8 @@ export async function POST(request: Request) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
+  const params = await request.json();
+
   const response = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [
@@ -16,7 +18,7 @@ export async function POST(request: Request) {
       },
       {
         role: "user",
-        content: "Whats the best national park in the US to visit?",
+        content: params.prompt, //string that the user passes in
       },
     ],
     temperature: 0,
