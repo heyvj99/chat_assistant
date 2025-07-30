@@ -20,7 +20,7 @@ export default function PromptForm({
         onPromptSubmit(prompt);
         setPrompt("");
       }}
-      className="flex flex-col gap-2 max-w-[50%]"
+      className="flex flex-col gap-2"
     >
       <label>What can I help you with?</label>
       <input
@@ -29,7 +29,7 @@ export default function PromptForm({
         onChange={(e) => {
           setPrompt(e.target.value);
         }}
-        className="border-1 max-w-[100%] p-[1rem] block"
+        className="border-1 p-[1rem] block"
       />
       <input
         type="submit"

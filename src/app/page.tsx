@@ -11,14 +11,19 @@ interface Choice {
   };
 }
 
+interface QnA {
+  userPrompt: string;
+  choiceArr: Choice[];
+}
+
 export default function Home() {
-  const [choices, setChoices] = useState<Choice[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [tone, setTone] = useState<string>("");
+  const [qnaArr, setqnaArr] = useState<QnA[]>([]);
 
   return (
-    <main>
-      <p className="text-3xl font-bold ">Hello</p>
+    <main className="flex flex-col gap-2 items-center">
+      <p className="text-3xl font-bold ">Hey! Wassup?</p>
       <select
         id="mySelect"
         onChange={(e) => {
@@ -51,21 +56,42 @@ export default function Home() {
 
           const result = await response.json();
 
-          setChoices(choices.concat(result.choices));
+          const newqna = [
+            {
+              choiceArr: result.choices,
+              userPrompt: prompt,
+            },
+          ];
+
+          const newqnaArr = qnaArr.concat(newqna);
+
+          await setqnaArr(newqnaArr);
           setIsLoading(false);
 
-          console.log("RESPONSE", response);
+          console.log("RESPONSE", result);
+          console.log("QnA_Arr", qnaArr);
         }}
       />
 
-      {choices.map((choice, i) => {
-        return (
-          <p key={i} className="max-w-[30rem]">
-            {" "}
-            {choice.message.content}{" "}
-          </p>
-        );
-      })}
+      <div className="flex flex-col gap-3 max-w-[50%]">
+        {qnaArr.map((qna, i) => {
+          return (
+            <div
+              key={i}
+              className="flex flex-col gap-0.5 bg-gray-100 p-4 rounded-2xl"
+            >
+              <p className="max-w-[30rem] text-[0.7rem] font-bold">
+                {" "}
+                {qna.userPrompt}
+              </p>
+              <p className="max-w-[30rem]">
+                {" "}
+                {qna.choiceArr[0].message.content}{" "}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </main>
   );
 }

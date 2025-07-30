@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     messages: [
       {
         role: "system",
-        content: `Your are in a ${params.tone}. Keep the answer to 3-4 sentence max and each sentence to at max 4-6 words.`,
+        content: `Your are in a ${params.tone} mood. Keep the answer to 3-4 sentence max and each sentence to at max 4-6 words.`,
       },
       {
         role: "user",
