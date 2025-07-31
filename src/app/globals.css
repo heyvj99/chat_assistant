@@ -42,7 +42,7 @@
   --color-background-orange: #ffe5ce;
   --color-background-purple: #f4edff;
   --color-fresh-orange: #f28765;
-  --color-bright-purple: #d5a5ff;
+  --color-bright-purple: #e3c3ff;
   --color-text-black: #3c3b3e;
 }
 
@@ -165,8 +165,8 @@
 }
 
 .whimsical-input {
-  background: #f28765;
-  border: 2px solid white;
+  background: #fffbf4;
+  border: 2px solid var(--color-fresh-orange);
   border-radius: 30px;
   color: var(--color-text-black);
   font-family: var(--font-quicksand), system-ui, sans-serif;

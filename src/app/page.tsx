@@ -20,6 +20,7 @@ export default function Home() {
   const [tone, setTone] = useState<string>("Funny");
   const [qnaArr, setqnaArr] = useState<QnA[]>([]);
   const [isThinking, setIsThinking] = useState<boolean>(false);
+  const [formValue, setFormValue] = useState<string>("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom when new Q&A is added
@@ -29,6 +30,10 @@ export default function Home() {
         chatContainerRef.current.scrollHeight;
     }
   }, [qnaArr, isThinking]);
+
+  const handleCardClick = (text: string) => {
+    setFormValue(text);
+  };
 
   return (
     <main className="whimsical-container flex flex-col h-screen">
@@ -66,17 +71,30 @@ export default function Home() {
                 <p>Start asking questions to get some wrong answers!</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-background-purple border-2 border-bright-purple p-2 rounded-lg cursor-pointer hover:scale-105 transition-transform">
+                <div
+                  className="bg-background-purple border-2 border-bright-purple p-2 rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                  onClick={() =>
+                    handleCardClick("Is there real gold in California?")
+                  }
+                >
                   <p className="text-text-black text-center font-semibold text-sm">
                     Is there real gold in California?
                   </p>
                 </div>
-                <div className="bg-background-purple border-2 border-bright-purple p-2 rounded-lg cursor-pointer hover:scale-105 transition-transform">
+                <div
+                  className="bg-background-purple border-2 border-bright-purple p-2 rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                  onClick={() =>
+                    handleCardClick("Why do whales migrate from the Arctic?")
+                  }
+                >
                   <p className="text-text-black text-center font-semibold text-sm">
                     Why do whales migrate from the Arctic?
                   </p>
                 </div>
-                <div className="bg-background-purple border-2 border-bright-purple p-2 rounded-lg cursor-pointer hover:scale-105 transition-transform">
+                <div
+                  className="bg-background-purple border-2 border-bright-purple p-2 rounded-lg cursor-pointer hover:scale-105 transition-transform"
+                  onClick={() => handleCardClick("How do I get rich?")}
+                >
                   <p className="text-text-black text-center font-semibold text-sm">
                     How do I get rich?
                   </p>
@@ -127,6 +145,7 @@ export default function Home() {
         <div className="max-w-[min(100%,42rem)] mx-auto pb-8">
           <PromptForm
             isLoading={isLoading}
+            value={formValue}
             onPromptSubmit={async (prompt: string) => {
               setIsLoading(true);
               setIsThinking(true);
@@ -159,6 +178,7 @@ export default function Home() {
               await setqnaArr(newqnaArr);
               setIsLoading(false);
               setIsThinking(false);
+              setFormValue(""); // Clear the form value after submission
 
               console.log("RESPONSE", result);
               console.log("QnA_Arr", qnaArr);
