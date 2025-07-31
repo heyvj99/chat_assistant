@@ -21,6 +21,7 @@ export default function Home() {
   const [qnaArr, setqnaArr] = useState<QnA[]>([]);
   const [isThinking, setIsThinking] = useState<boolean>(false);
   const [formValue, setFormValue] = useState<string>("");
+  const [lastSubmittedPrompt, setLastSubmittedPrompt] = useState<string>("");
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom when new Q&A is added
@@ -42,11 +43,11 @@ export default function Home() {
         <div className="flex items-center justify-center pt-8">
           <h1 className="whimsical-title text-2xl md:text-3xl text-center">
             <div className="flex flex-col items-center justify-center">
-              <span className="text-text-black font-bold text-3xl">
-                Delulu AI
+              <span className="text-text-black font-bold text-4xl">
+                DeluluBot
               </span>
-              <span className="text-text-black font-medium text-sm">
-                Boldly taking on the world, one wrong answer at a time.
+              <span className="text-text-black font-medium text-[1rem]">
+                Serving confidence with zero accuracy
               </span>
             </div>
           </h1>
@@ -68,7 +69,7 @@ export default function Home() {
             // placeholder for when no questions have been asked
             <div className="space-y-4 mt-8">
               <div className="text-center text-text-black font-medium mb-6">
-                <p>Start asking questions to get some wrong answers!</p>
+                <p>Ask away, I’m all ears!</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div
@@ -120,6 +121,9 @@ export default function Home() {
           {isThinking && (
             <div className="whimsical-card p-6">
               <div className="flex items-center space-x-2">
+                <span className="text-text-black font-medium">
+                  {lastSubmittedPrompt}
+                </span>
                 <div className="flex space-x-1">
                   <div className="w-2 h-2 bg-[var(--color-fresh-orange)] rounded-full animate-bounce"></div>
                   <div
@@ -131,9 +135,6 @@ export default function Home() {
                     style={{ animationDelay: "0.2s" }}
                   ></div>
                 </div>
-                <span className="text-text-black font-medium">
-                  Cooking up some wrong answers...
-                </span>
               </div>
             </div>
           )}
@@ -149,6 +150,7 @@ export default function Home() {
             onPromptSubmit={async (prompt: string) => {
               setIsLoading(true);
               setIsThinking(true);
+              setLastSubmittedPrompt(prompt); // Set the last submitted prompt
 
               // Add a delay to simulate thinking
               await new Promise((resolve) => setTimeout(resolve, 2000));

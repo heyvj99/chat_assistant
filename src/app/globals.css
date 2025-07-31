@@ -40,7 +40,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-background-orange: #ffe5ce;
-  --color-background-purple: #f4edff;
+  --color-background-purple: #fbf8ff;
   --color-fresh-orange: #f28765;
   --color-bright-purple: #e3c3ff;
   --color-text-black: #3c3b3e;
@@ -228,7 +228,8 @@
 }
 
 .whimsical-card {
-  background: var(--color-background-purple);
+  /* background: #fff4e2; */
+  background-color: var(--color-background-purple);
   border: 2px solid var(--color-bright-purple);
   border-radius: 40px;
   box-shadow: 0 4px 8px rgba(244, 237, 255, 0.5);
