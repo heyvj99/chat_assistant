@@ -17,7 +17,7 @@ interface QnA {
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [tone, setTone] = useState<string>("Funny");
+  // const [tone, setTone] = useState<string>("Funny");
   const [qnaArr, setqnaArr] = useState<QnA[]>([]);
   const [isThinking, setIsThinking] = useState<boolean>(false);
   const [formValue, setFormValue] = useState<string>("");
@@ -162,7 +162,7 @@ export default function Home() {
                 },
                 body: JSON.stringify({
                   prompt: prompt,
-                  tone: tone,
+                  // tone: tone,
                 }),
               });
 

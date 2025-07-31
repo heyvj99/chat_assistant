@@ -119,6 +119,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    font-family: var(--font-quicksand), system-ui, sans-serif;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-quicksand), system-ui, sans-serif;
@@ -152,14 +155,19 @@
 }
 
 .chango-regular {
-  font-family: var(--font-chango), sans-serif;
+  font-family: var(--font-chango), "Arial Black", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
+/* Debug: Add a test class to verify font loading */
+.font-test {
+  font-family: var(--font-chango), "Arial Black", sans-serif;
+}
+
 .whimsical-title {
-  font-family: var(--font-chango), sans-serif;
-  font-weight: bold;
+  font-family: var(--font-chango), "Arial Black", sans-serif;
+  font-weight: 400;
   color: var(--color-text-black);
   text-shadow: 2px 2px 4px rgba(242, 135, 101, 0.3);
 }

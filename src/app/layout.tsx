@@ -7,6 +7,7 @@ const quicksand = Quicksand({
   variable: "--font-quicksand",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -17,7 +18,8 @@ const geistMono = Geist_Mono({
 const chango = Chango({
   variable: "--font-chango",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
