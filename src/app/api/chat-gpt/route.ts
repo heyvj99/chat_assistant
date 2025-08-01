@@ -3,7 +3,7 @@ import OpenAI from "openai";
 
 export async function POST(request: Request) {
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   });
 
   //grabbing the user's input, these are the contents of the API body
